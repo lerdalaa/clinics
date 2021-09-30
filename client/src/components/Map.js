@@ -27,27 +27,16 @@ function Map(props) {
 
   const getEntries = async () => {
     const entriesFromDb = await listEntries();
-    console.log(entriesFromDb);
-
     let filteredEntries;
     
     if (ShowAll) {
-      console.log("this is happening showall");
       filteredEntries = entriesFromDb;
     } else if (PhysioFilter) {
-      console.log("this is happening physiofilter");
       filteredEntries = entriesFromDb.filter(entry => entry.tags === "physio");
     } else if (ChiropracticFilter) {
-      console.log("this is happening chirofilter");
       filteredEntries = entriesFromDb.filter(entry => entry.tags === "chiropractic");
     };
-
-    console.log("ShowAll = " + ShowAll);
-    console.log("PhysioFilter = " + PhysioFilter);
-    console.log("ChiropracticFilter = " + ChiropracticFilter);
-
-    console.log(filteredEntries);
-
+    
     setEntries(filteredEntries);
   }
 
@@ -65,17 +54,14 @@ function Map(props) {
 
   
   const showPhysio = (event) => {
-
     setChiropracticFilter(false);
     setPhysioFilter(true);
     setShowAll(false);
-    
     
     getEntries();
   };
 
   const showChiropractic = (event) => {
-    
     setChiropracticFilter(true);
     setPhysioFilter(false);
     setShowAll(false);
